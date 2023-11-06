@@ -32,8 +32,10 @@ class EPaper(BaseDisplay):
         """
         super(EPaper, self).__init__()
 
-        width = EPD_WIDTH
-        height = EPD_HEIGHT
+        # The constants defined in the EPD module refer to the portrait format. Therefore they hat to be swapped
+        width = EPD_HEIGHT
+        height = EPD_WIDTH
+
         self.image = create_image(width, height)
 
         self.epd = EPD()
