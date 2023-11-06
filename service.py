@@ -1,6 +1,6 @@
 import time
 
-from display import BaseDisplay
+from display.display import BaseDisplay
 from provider import Provider
 
 
