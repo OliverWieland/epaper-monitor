@@ -4,7 +4,7 @@ The **E-Ink Display Demo** is a Python application that provides a graphical use
 
 ## Features
 
-- As for now, the application displays data provided by MQTT, other providers can easily be integrated
+- As for now, the application displays data provided by MQTT or SignalK, other providers can easily be integrated
 - Supports [Waveshare 2.9 inch e-paper module](https://www.waveshare.com/wiki/2.9inch_e-Paper_Module) on a Raspberry Pi, other compatible Waveshare modules should work out of the box with the appropriate python module (https://github.com/waveshare/e-Paper.git)
 - For development, you can also output the image on your screen
 
