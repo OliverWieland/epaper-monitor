@@ -1,7 +1,7 @@
 import time
 
 from display.display import BaseDisplay
-from provider import Provider
+from provider import Provider, subscr_data
 
 
 class Service:
@@ -29,7 +29,7 @@ class Service:
         """
         self.display.terminate()
 
-    def callback(self, id: str, value: str) -> None:
+    def callback(self, data: subscr_data) -> None:
         """Callback function to handle data updates.
 
         This method is called when the data provider receives new data. It updates the display with the data.
@@ -41,10 +41,13 @@ class Service:
         Returns:
             None
         """
-        for subscription in self.provider.get_subscriptions():
-            if subscription == id:
-                self.display.update_widget(id, value)
-                return
+
+        if not data:
+            return
+
+        for subscription in data:
+            self.display.update_widget(subscription[0], subscription[1], False)
+        self.display.refresh()
 
     def run(self):
         """Start the service, connect the data provider, and run the main loop.

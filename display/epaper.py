@@ -112,3 +112,7 @@ class EPaper(BaseDisplay):
         """
         self.init_display()
         self.epd.sleep()
+
+    def refresh(self) -> None:
+        self.epd.display_Partial(self.epd.getbuffer(self.image))
+        self.epd.sleep()

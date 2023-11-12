@@ -119,7 +119,7 @@ class BaseDisplay(ABC):
         pass
 
     @abstractmethod
-    def update_widget(self, id: str, value: str = "") -> None:
+    def update_widget(self, id: str, value: str = "", refresh: bool = True) -> None:
         """Abstract method to update a specific widget on the display.
 
         This method should be implemented in derived classes to update a specific widget on the display.
@@ -131,4 +131,8 @@ class BaseDisplay(ABC):
         Returns:
             None
         """
+        pass
+
+    @abstractmethod
+    def refresh(self) -> None:
         pass

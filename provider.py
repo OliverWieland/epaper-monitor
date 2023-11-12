@@ -1,8 +1,13 @@
+from dataclasses import dataclass
+import json
+from time import sleep
 from typing import Any, Callable, Protocol
+import requests
 
 import paho.mqtt.client as mqtt
 
-Callback = Callable[[str, str], None] | None
+subscr_data = list[tuple[str, str]]
+Callback = Callable[subscr_data, None] | None
 
 
 class Provider(Protocol):
@@ -163,7 +168,7 @@ class MqttProvider:
         """
         print(message)
         if self.on_data is not None:
-            self.on_data(message.topic, message.payload.decode("utf-8"))
+            self.on_data([(message.topic, message.payload.decode("utf-8"))])
 
     def subscribe_topics(self) -> None:
         """Subscribe to predefined MQTT topics.
@@ -195,3 +200,106 @@ class MqttProvider:
             None
         """
         self.on_data = callback
+
+
+@dataclass
+class Data:
+    topic: str
+    value: any
+
+
+class SignalKProvider:
+    def __init__(
+        self,
+        url: str,
+        subscriptions: list[str] = [],
+        request_cycle_time: float = 10,
+    ) -> None:
+        self.url = url
+        self.topics: list[str] = subscriptions
+        self.on_data: Callback = None
+        self.request_cycle_time = request_cycle_time
+
+        self.data = {}
+
+        for topic in subscriptions:
+            self.data[topic] = 0
+
+    def connect(self) -> None:
+        self.client.connect(self.host, self.port)
+
+    def subscribe_topics(self) -> None:
+        """Subscribe to predefined topics.
+
+        This method should implement the logic to subscribe to specific topics
+        relevant to the data provider.
+
+        Returns:
+            None
+        """
+        ...
+
+    def register_callback(self, callback: Callback) -> None:
+        """Register a callback function to handle received data.
+
+        Args:
+            callback (Callback): The callback function to be registered.
+
+        Returns:
+            None
+        """
+        self.on_data = callback
+
+    def get_subscriptions(self) -> list[str]:
+        """Get a list of subscribed topics.
+
+        Returns:
+            list[str]: A list of topics to which the data provider is subscribed.
+        """
+        ...
+
+    def connect(self) -> None:
+        """Connect to the data source.
+
+        This method should implement the logic to establish a connection to
+        the data source.
+
+        Returns:
+            None
+        """
+        ...
+
+    def run(self) -> None:
+        """Start running the data provider.
+
+        This method should start the data provider's main loop or execution.
+
+        Returns:
+            None
+        """
+        while True:
+            response = requests.get(self.url)
+            if response.status_code == 200:
+                obj = json.loads(response.text)
+
+                data = self.eval_response(obj)
+                if self.on_data is not None:
+                    self.on_data(data)
+
+            sleep(self.request_cycle_time)
+
+    def eval_response(self, response: dict[str, Any]) -> list:
+        data = []
+
+        for topic in self.topics:
+            path = topic.split("/")
+
+            value = response
+            for element in path:
+                value = value.get(element, "")
+
+            if self.data[topic] != value:
+                data.append((topic, value))
+                self.data[topic] = value
+
+        return data

@@ -4,7 +4,7 @@ from enum import Enum
 from PIL import ImageFont
 
 from display.display import BaseDisplay
-from provider import MqttProvider
+from provider import MqttProvider, SignalKProvider
 from service import Service
 from widgets.icon import Icon
 from widgets.text import HAlign, Text
@@ -16,6 +16,10 @@ Border: int = 10
 Host = "desktop"
 Port = 1883
 Id = "battmon"
+
+Url = (
+    "http://sunjapi:3000/signalk/v1/api/vessels/urn:mrn:imo:mmsi:211868040/electrical/"
+)
 
 
 Fonts = dict[str, ImageFont.FreeTypeFont]
@@ -47,8 +51,8 @@ def main(argv: list[str]):
     display.update_all_widgets()
     subscriptions = [id for id in display.widgets if not id.startswith("__")]
 
-    provider = MqttProvider(Host, Port, Id, subscriptions)
-
+    #    provider = MqttProvider(Host, Port, Id, subscriptions)
+    provider = SignalKProvider(Url, subscriptions)
     service = Service(provider, display)
     service.run()
 
@@ -115,7 +119,7 @@ def define_widgets(display: BaseDisplay, fonts: Fonts = {}):
         decimal=0,
     )
     display.add_widget(
-        id="battery/load",
+        id="batteries/SHUNT/capacity/stateOfCharge/value",
         widget=widget,
     )
 
@@ -133,7 +137,7 @@ def define_widgets(display: BaseDisplay, fonts: Fonts = {}):
         decimal=1,
     )
     display.add_widget(
-        "battery/voltage",
+        "batteries/SHUNT/voltage/value",
         widget,
     )
 
@@ -151,7 +155,7 @@ def define_widgets(display: BaseDisplay, fonts: Fonts = {}):
         decimal=1,
     )
     display.add_widget(
-        "battery/current",
+        "batteries/SHUNT/current/value",
         widget,
     )
 
@@ -175,7 +179,7 @@ def define_widgets(display: BaseDisplay, fonts: Fonts = {}):
         decimal=0,
     )
     display.add_widget(
-        "solar/power",
+        "solar/MPPT/panelPower/value",
         widget,
     )
 
@@ -193,7 +197,7 @@ def define_widgets(display: BaseDisplay, fonts: Fonts = {}):
         decimal=1,
     )
     display.add_widget(
-        "solar/voltage",
+        "solar/MPPT/voltage/value",
         widget,
     )
 
@@ -211,7 +215,7 @@ def define_widgets(display: BaseDisplay, fonts: Fonts = {}):
         decimal=1,
     )
     display.add_widget(
-        "solar/current",
+        "solar/MPPT/current/value",
         widget,
     )
 

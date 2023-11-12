@@ -109,3 +109,6 @@ class Screen(BaseDisplay):
             None
         """
         pass
+
+    def refresh(self):
+        self.image.show()
