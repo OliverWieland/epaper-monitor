@@ -1,0 +1,110 @@
+{
+    "batteries": {
+        "SHUNT": {
+            "voltage": {
+                "meta": {
+                    "units": "V",
+                    "description": "Voltage measured at or as close as possible to the device"
+                },
+                "value": 13.27,
+                "$source": "signalk-victron-ble.C7:79:37:5E:32:F1",
+                "timestamp": "2023-11-11T11:42:29.596095Z"
+            },
+            "current": {
+                "meta": {
+                    "units": "A",
+                    "description": "Current flowing out (+ve) or in (-ve) to the device"
+                },
+                "value": 3.01,
+                "$source": "signalk-victron-ble.C7:79:37:5E:32:F1",
+                "timestamp": "2023-11-11T11:42:29.596095Z"
+            },
+            "power": {
+                "meta": {},
+                "value": 39.942699999999995,
+                "$source": "signalk-victron-ble.C7:79:37:5E:32:F1",
+                "timestamp": "2023-11-11T11:42:29.596095Z"
+            },
+            "capacity": {
+                "stateOfCharge": {
+                    "meta": {
+                        "units": "ratio",
+                        "description": "State of charge, 1 = 100%"
+                    },
+                    "value": 0.7,
+                    "$source": "signalk-victron-ble.C7:79:37:5E:32:F1",
+                    "timestamp": "2023-11-11T11:42:29.596095Z"
+                },
+                "dischargeSinceFull": {
+                    "meta": {
+                        "units": "C",
+                        "description": "Cumulative discharge since battery was last full"
+                    },
+                    "value": 327240,
+                    "$source": "signalk-victron-ble.C7:79:37:5E:32:F1",
+                    "timestamp": "2023-11-11T11:42:29.596095Z"
+                },
+                "timeRemaining": {
+                    "meta": {
+                        "units": "s",
+                        "description": "Time to discharge to discharge limit at current rate"
+                    },
+                    "value": 3932100,
+                    "$source": "signalk-victron-ble.C7:79:37:5E:32:F1",
+                    "timestamp": "2023-11-11T11:42:29.596095Z"
+                }
+            }
+        }
+    },
+    "solar": {
+        "MPPT": {
+            "voltage": {
+                "meta": {
+                    "units": "V",
+                    "description": "Voltage measured at or as close as possible to the device"
+                },
+                "value": 13.27,
+                "$source": "signalk-victron-ble.C4:11:AF:AC:1E:26",
+                "timestamp": "2023-11-11T11:42:29.544685Z"
+            },
+            "current": {
+                "meta": {
+                    "units": "A",
+                    "description": "Current flowing out (+ve) or in (-ve) to the device"
+                },
+                "value": 4.8,
+                "$source": "signalk-victron-ble.C4:11:AF:AC:1E:26",
+                "timestamp": "2023-11-11T11:42:29.544685Z"
+            },
+            "chargingMode": {
+                "meta": {
+                    "description": "Charging mode i.e. float, overcharge, etc."
+                },
+                "value": "bulk",
+                "$source": "signalk-victron-ble.C4:11:AF:AC:1E:26",
+                "timestamp": "2023-11-11T11:42:29.544685Z"
+            },
+            "panelPower": {
+                "meta": {},
+                "value": 65,
+                "$source": "signalk-victron-ble.C4:11:AF:AC:1E:26",
+                "timestamp": "2023-11-11T11:42:29.544685Z"
+            },
+            "loadCurrent": {
+                "meta": {
+                    "units": "A",
+                    "description": "Amperage being supplied to load directly connected to controller"
+                },
+                "value": 0,
+                "$source": "signalk-victron-ble.C4:11:AF:AC:1E:26",
+                "timestamp": "2023-11-11T11:42:29.544685Z"
+            },
+            "yieldToday": {
+                "meta": {},
+                "value": 180,
+                "$source": "signalk-victron-ble.C4:11:AF:AC:1E:26",
+                "timestamp": "2023-11-11T11:42:29.544685Z"
+            }
+        }
+    }
+}
