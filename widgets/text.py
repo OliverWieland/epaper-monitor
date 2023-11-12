@@ -32,6 +32,7 @@ class Text:
         decimal: int = 0,
         text: str = "",
         suffix: str = "",
+        scale: int = 1,
     ) -> None:
         """Initialize a Text instance.
 
@@ -56,6 +57,7 @@ class Text:
         self.is_numeric: bool = is_numeric
         self.decimal: int = decimal
         self.suffix = suffix
+        self.scale = scale
         self.image: Image.Image = Image.new("1", self.size, 0)
 
     def update(self, value: str) -> None:
@@ -117,10 +119,13 @@ class Text:
             value = self.text if not self.is_numeric else "0"
 
         if self.is_numeric:
+            num_value = float(value)
+            num_value *= self.scale
+
             if self.decimal > 0:
-                value = f"{float(value):.{self.decimal}f}"
+                value = f"{num_value:.{self.decimal}f}"
             else:
-                value = f"{int(round(float(value), self.decimal))}"
+                value = f"{int(round(num_value, self.decimal))}"
 
         if self.suffix:
             value = " ".join((value, self.suffix))

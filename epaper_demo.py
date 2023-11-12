@@ -117,6 +117,7 @@ def define_widgets(display: BaseDisplay, fonts: Fonts = {}):
         suffix="%",
         is_numeric=True,
         decimal=0,
+        scale=100,
     )
     display.add_widget(
         id="batteries/SHUNT/capacity/stateOfCharge/value",
