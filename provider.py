@@ -258,17 +258,6 @@ class SignalKProvider:
         """
         ...
 
-    def connect(self) -> None:
-        """Connect to the data source.
-
-        This method should implement the logic to establish a connection to
-        the data source.
-
-        Returns:
-            None
-        """
-        ...
-
     def run(self) -> None:
         """Start running the data provider.
 
