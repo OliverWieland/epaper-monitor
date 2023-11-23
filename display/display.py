@@ -39,7 +39,7 @@ def create_image(width: int, height: int) -> Image.Image:
     return Image.new("1", (width, height), 0)
 
 
-class BaseDisplay(ABC):
+class Display(ABC):
     """Base class for managing a display.
 
     This abstract base class defines the interface and common functionality for managing a display.

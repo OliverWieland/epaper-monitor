@@ -1,0 +1,126 @@
+config:
+  provider: signalk
+  #  url: http://sunjapi:3000/signalk/v1/api/vessels/urn:mrn:imo:mmsi:211868040/electrical/
+  url: http://localhost:3000/signalk/v1/api/vessels/urn:mrn:signalk:uuid:b09814c5-9050-42d7-9ef4-27ad784c4f2f/navigation/
+
+  fonts:
+    font16:
+      name: FreeSans
+      size: 16
+    font24:
+      name: FreeSans
+      size: 24
+
+layout:
+  border: 10
+  widgets:
+    BatteryImage:
+      type: icon
+      position:
+        - 0
+        - 0
+      filename: icons/battery.bmp
+
+    BatteryLoad:
+      type: text
+      position:
+        - 36
+        - 4
+      size:
+        - 80
+        - 24
+      font: font24
+      halign: right
+      suffix: "kn"
+      numeric: true
+      decimal: 1
+      scale: 1
+      id: speedThroughWater/value
+    #      id: batteries/SHUNT/capacity/stateOfCharge/value
+
+    # BatteryVoltage:
+    #   type: text
+    #   position:
+    #     - 116
+    #     - 4
+    #   size:
+    #     - 80
+    #     - 24
+    #   font: font24
+    #   halign: right
+    #   suffix: V
+    #   numeric: true
+    #   decimal: 0
+    #   scale: 1
+    #   id: batteries/SHUNT/voltage/value
+
+    # BatteryCurrent:
+    #   type: text
+    #   position:
+    #     - 196
+    #     - 4
+    #   size:
+    #     - 80
+    #     - 24
+    #   font: font24
+    #   halign: right
+    #   suffix: A
+    #   numeric: true
+    #   decimal: 0
+    #   scale: 1
+    #   id: batteries/SHUNT/current/value
+
+    # SolarImage:
+    #   type: icon
+    #   position:
+    #     - 0
+    #     - 40
+    #   filename: icons/solar.bmp
+
+    # SolarPower:
+    #   type: text
+    #   position:
+    #     - 36
+    #     - 44
+    #   size:
+    #     - 80
+    #     - 24
+    #   font: font24
+    #   halign: right
+    #   suffix: V
+    #   numeric: true
+    #   decimal: 0
+    #   scale: 1
+    #   id: solar/MPPT/panelPower/value
+
+    # SolarVoltage:
+    #   type: text
+    #   position:
+    #     - 116
+    #     - 44
+    #   size:
+    #     - 80
+    #     - 24
+    #   font: font24
+    #   halign: right
+    #   suffix: V
+    #   numeric: true
+    #   decimal: 0
+    #   scale: 1
+    #   id: solar/MPPT/voltage/value
+
+    # SolarCurrent:
+    #   type: text
+    #   position:
+    #     - 196
+    #     - 44
+    #   size:
+    #     - 80
+    #     - 24
+    #   font: font24
+    #   halign: right
+    #   suffix: A
+    #   numeric: true
+    #   decimal: 1
+    #   scale: 1
+    #   id: solar/MPPT/current/value

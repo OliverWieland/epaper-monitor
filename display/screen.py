@@ -1,9 +1,9 @@
 from PIL import ImageDraw
 
-from display.display import BaseDisplay, create_image
+from display.display import Display, create_image
 
 
-class Screen(BaseDisplay):
+class Screen(Display):
     """A class for managing a virtual screen for display testing.
 
     This class provides functionality for managing a virtual screen used for testing and development purposes.

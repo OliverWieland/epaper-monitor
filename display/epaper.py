@@ -1,8 +1,8 @@
-from display.display import BaseDisplay, create_image
+from display.display import Display, create_image
 from epd.epd2in9_V2 import EPD, EPD_HEIGHT, EPD_WIDTH
 
 
-class EPaper(BaseDisplay):
+class EPaper(Display):
     """A class for controlling an e-paper display (EPD).
 
     This class provides functionality for updating and controlling an e-paper display.
